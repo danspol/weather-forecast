@@ -20,7 +20,7 @@ export class WeatherForecastComponent implements OnChanges {
   }
 
   getDay(timestamp) {
-    return moment(timestamp).format('DD');
+    return moment(timestamp).format('MMMM DD');
   }
 
   getHour(timestamp) {
