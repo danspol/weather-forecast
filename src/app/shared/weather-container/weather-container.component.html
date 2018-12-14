@@ -1,0 +1,10 @@
+<div class="weather">
+
+    <div *ngIf="loading">Loading</div>
+
+    <div class="row" *ngIf="!loading">
+        <div class="col">
+            <app-weather-forecast [forecasts]="weathers"></app-weather-forecast>
+        </div>
+    </div>
+</div>

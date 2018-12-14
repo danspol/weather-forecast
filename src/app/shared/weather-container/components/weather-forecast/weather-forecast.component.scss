@@ -1,0 +1,33 @@
+.weather-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+
+  .weather-day {
+    padding: 5px;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .weather-item {
+    display: flex;
+    flex-direction: row;
+    color: #484848;
+    flex: 1;
+    justify-content: center;
+    height: 18px;
+    align-items: baseline;
+  }
+
+  .weather-title {
+    flex: 1;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555571;
+  }
+}
