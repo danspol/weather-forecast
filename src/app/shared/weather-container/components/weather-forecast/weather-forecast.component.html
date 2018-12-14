@@ -1,36 +1,27 @@
+<div class="weather-title">Country: <b>{{forecasts.city.country}}</b></div>
 <div class="weather-list">
-    <div class="weather-title">Country: <b>{{forecasts.city.country}}</b></div>
-    <div *ngFor="let forecast of forecasts.list" class="weather-day">
 
-        <div class="weather-item"><b>{{forecast.dt_txt}}</b></div>
-        <div class="weather-item"><b>{{forecast.main.temp}}F</b></div>
-        <div class="weather-additional">
-            <div class="weather-item info">Deg.: <span>{{forecast.wind.deg}}</span></div>
-            <div class="weather-item info">Speed: <span>{{forecast.wind.speed}}</span></div>
-            <div class="weather-item info">Clouds : <span>{{forecast.clouds.all}}</span></div>
+    <div *ngFor="let day of days" class="weather-day">
+        <div *ngFor="let forecast of getForecasts(day)">
+
+            <div class="day" [ngClass]="{'show': isNextDay(forecast.dt_txt)}">
+                {{getDay(forecast.dt_txt)}}
+            </div>
+            <div class="weather-additional">
+                <div class="temperature">
+                    {{forecast.main.temp}} <i>F</i>
+                </div>
+                <div class="hour">
+                    {{getHour(forecast.dt_txt)}}
+                </div>
+
+                <div class="degree">Deg.: <span>{{forecast.wind.deg}}</span></div>
+                <div class="speed">Speed: <span>{{forecast.wind.speed}}</span></div>
+                <div class="clouds">Clouds : <span>{{forecast.clouds.all}}</span></div>
+            </div>
+
         </div>
-
-
-        <!--<div class="weather-item">-->
-            <!--<div class="weather-title">Weather:</div>-->
-            <!--<div class="weather-list">-->
-                <!--<div *ngFor="let weather of forecast.weather">-->
-                    <!--<div class="weather-item info">Description: <b>{{weather.description}}</b></div>-->
-                    <!--<div class="weather-item info">Main: <b>{{weather.main}}</b></div>-->
-                    <!--&lt;!&ndash;<div class="weather-item info">Id: <b>{{weather.id}}</b></div>&ndash;&gt;-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="weather-item">-->
-            <!--<div class="weather-title">Wid:</div>-->
-            <!--<div class="weather-list">-->
-                <!--<div class="weather-item info">Deg.: <b>{{forecast.wind.deg}}</b></div>-->
-                <!--<div class="weather-item info">Speed: <b>{{forecast.wind.speed}}</b></div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-
-
     </div>
+
+
 </div>
