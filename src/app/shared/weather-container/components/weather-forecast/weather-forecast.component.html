@@ -1,27 +1,10 @@
-<div class="weather-title">Country: <b>{{forecasts.city.country}}</b></div>
-<div class="weather-list">
-
-    <div *ngFor="let day of days" class="weather-day">
-        <div *ngFor="let forecast of getForecasts(day)">
-
-            <div class="day" [ngClass]="{'show': isNextDay(forecast.dt_txt)}">
-                {{getDay(forecast.dt_txt)}}
-            </div>
-            <div class="weather-additional">
-                <div class="temperature">
-                    {{forecast.main.temp}} <i>F</i>
-                </div>
-                <div class="hour">
-                    {{getHour(forecast.dt_txt)}}
-                </div>
-
-                <div class="degree">Deg.: <span>{{forecast.wind.deg}}</span></div>
-                <div class="speed">Speed: <span>{{forecast.wind.speed}}<i>meter/sec</i></span></div>
-                <div class="clouds">Clouds : <span>{{forecast.clouds.all}}%</span></div>
-            </div>
-
-        </div>
+<div class="weather-view">
+    <ng-content></ng-content>
+</div>
+<div class="weather-days">
+    <div class="days" *ngFor="let day of days"
+         (click)="select(day)"
+         [ngClass]="{'active': day === activeDay}">
+        {{day| momentFormat: 'MMMM DD'}}
     </div>
-
-
 </div>

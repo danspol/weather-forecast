@@ -1,0 +1,12 @@
+<div class="weather-additional">
+    <div class="temperature">
+        {{forecast.main.temp - 273.15 | number: '1.0-0'}} <i>C</i>
+    </div>
+    <div class="hour">
+        {{forecast.dt_txt | momentFormat: 'HH:mm' }}
+    </div>
+
+    <div class="degree">Deg.: <span>{{forecast.wind.deg}}</span></div>
+    <div class="speed">Speed: <span>{{forecast.wind.speed}}<i>meter/sec</i></span></div>
+    <div class="clouds">Clouds : <span>{{forecast.clouds.all}}%</span></div>
+</div>

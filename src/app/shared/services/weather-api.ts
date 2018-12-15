@@ -81,7 +81,7 @@ export class WeatherApi {
   constructor(private http: HttpClient) {
   }
 
-  getWeather(query: ISearchQuery): Observable<IWeatherByLocation | IWeatherList> {
+  getWeather(query: ISearchQuery): Observable<IWeatherList> {
     let params = new HttpParams();
 
     const keys = Object.keys(query);
@@ -90,6 +90,6 @@ export class WeatherApi {
       params = params.set(key, query[key]);
     });
 
-    return this.http.get('/api/2.5/forecast', {params}) as Observable<IWeatherByLocation | IWeatherList>;
+    return this.http.get('/api/2.5/forecast', {params}) as Observable<IWeatherList>;
   }
 }

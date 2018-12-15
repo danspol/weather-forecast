@@ -4,7 +4,21 @@
 
     <div class="row" *ngIf="!loading">
         <div class="col">
-            <app-weather-forecast [forecasts]="weathers"></app-weather-forecast>
+
+            <app-weather-forecast [days]="days"
+                                  [selectedDay]="selectedDay"
+                                  (onSelectDay)="select($event)">
+
+                <app-weather-view *ngFor="let forecast of selectedHours"
+                                  [forecast]="forecast">
+                </app-weather-view>
+            </app-weather-forecast>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            google maps
         </div>
     </div>
 </div>

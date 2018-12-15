@@ -1,65 +1,33 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {IWeatherList} from '../../../services/weather-api';
-import * as moment from 'moment';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation} from '@angular/core';
 import {reduce} from 'lodash';
 
 @Component({
   selector: 'app-weather-forecast',
   templateUrl: './weather-forecast.component.html',
   styleUrls: ['./weather-forecast.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class WeatherForecastComponent implements OnChanges {
-  @Input() forecasts: IWeatherList;
+  @Input() days: string[];
+  @Input() selectedDay;
+  @Output() onSelectDay = new EventEmitter();
 
-  days = [];
-  groupDays = {};
-  previous;
+  activeDay;
 
   constructor() {
   }
 
-  getDay(timestamp) {
-    return moment(timestamp).format('MMMM DD');
-  }
+  select(datetime) {
 
-  getHour(timestamp) {
-    return moment(timestamp).format('HH:mm');
-  }
-
-  isNextDay(timestamp) {
-    const day = moment(timestamp).format('DD');
-
-    if (day !== this.previous) {
-      this.previous = day;
-      return true;
-    }
-
-    return false;
-  }
-
-  getForecasts(day) {
-
-    return this.groupDays[day] || [];
+    this.activeDay = datetime;
+    this.onSelectDay.emit(datetime);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    if (changes.forecasts) {
-      const forecasts = changes.forecasts.currentValue;
-      this.groupDays = reduce(forecasts.list, (result, value) => {
-        const key = moment(value.dt_txt).format('DD');
-
-        if (!result[key]) {
-          result[key] = [];
-        }
-
-        result[key] = [...result[key], value];
-
-        return result;
-      }, {});
-
-      this.days = Object.keys(this.groupDays);
+    if (changes.selectedDay) {
+      this.activeDay = changes.selectedDay.currentValue;
     }
   }
 }

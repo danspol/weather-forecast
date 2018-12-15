@@ -9,13 +9,17 @@ import {WeatherInterceptor} from './shared/services/weather-interceptor';
 import {WeatherContainerComponent} from './shared/weather-container/weather-container.component';
 import {WeatherForecastComponent} from './shared/weather-container/components/weather-forecast/weather-forecast.component';
 import {NotFoundComponent} from './shared/not-found/not-found.component';
+import {WeatherViewComponent} from './shared/weather-container/components/weather-view/weather-view.component';
+import {MomentFormatPipes} from './shared/pipes/pipes';
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherContainerComponent,
     WeatherForecastComponent,
+    WeatherViewComponent,
     NotFoundComponent,
+    MomentFormatPipes,
   ],
   imports: [
     AppRoutingModule,
