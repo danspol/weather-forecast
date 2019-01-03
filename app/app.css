@@ -1,0 +1,14 @@
+/* app css stylesheet */
+
+.list-group .list-group-item {
+  cursor: pointer;
+}
+
+.details {
+  background: #3D6AA2;
+  color: white;
+}
+
+.details .temperature {
+  font-weight: bold;
+}

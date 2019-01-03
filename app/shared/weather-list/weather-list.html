@@ -1,0 +1,6 @@
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="(key, value) in $ctrl.days"
+        ng-click="$ctrl.select(value, key)">
+        Day {{$ctrl.getDay(value.dt)}}
+    </li>
+</ul>
